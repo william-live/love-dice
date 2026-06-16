@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-pink: #f0197d;
+  --brand-purple: #8b5cf6;
+  --brand-coral: #ff6b6b;
+  --brand-bg: #120818;
+  --brand-card: #1e0d2b;
+  --brand-border: #2d1445;
+  --gradient-main: linear-gradient(135deg, #f0197d, #8b5cf6);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--brand-bg);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* ===================== KEYFRAMES ===================== */
+
+@keyframes spin-dice {
+  0% {
+    transform: perspective(400px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  25% {
+    transform: perspective(400px) rotateX(180deg) rotateY(90deg) rotateZ(45deg);
+  }
+  50% {
+    transform: perspective(400px) rotateX(360deg) rotateY(180deg) rotateZ(90deg);
+  }
+  75% {
+    transform: perspective(400px) rotateX(540deg) rotateY(270deg) rotateZ(135deg);
+  }
+  100% {
+    transform: perspective(400px) rotateX(720deg) rotateY(360deg) rotateZ(180deg);
+  }
+}
+
+@keyframes card-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes card-flip-back {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes slot-spin {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-85%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(240, 25, 125, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(240, 25, 125, 0.7), 0 0 60px rgba(139, 92, 246, 0.4);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  10% { transform: translateX(-4px) rotate(-2deg); }
+  20% { transform: translateX(4px) rotate(2deg); }
+  30% { transform: translateX(-4px) rotate(-1deg); }
+  40% { transform: translateX(4px) rotate(1deg); }
+  50% { transform: translateX(-2px) rotate(-0.5deg); }
+  60% { transform: translateX(2px) rotate(0.5deg); }
+  70% { transform: translateX(-2px) rotate(0deg); }
+  80% { transform: translateX(2px) rotate(0deg); }
+  90% { transform: translateX(-1px); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===================== UTILITY CLASSES ===================== */
+
+.dice-spinning {
+  animation: spin-dice 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+.card-flipped {
+  animation: card-flip 0.6s ease-in-out forwards;
+}
+
+.card-unflipped {
+  animation: card-flip-back 0.6s ease-in-out forwards;
+}
+
+.slot-spinning {
+  animation: slot-spin 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.glow-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.4s ease-out forwards;
+}
+
+.shake {
+  animation: shake 0.8s ease-in-out;
+}
+
+.pop-in {
+  animation: pop-in 0.3s ease-out forwards;
+}
+
+.gradient-text {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: var(--gradient-main);
+}
+
+.card-3d-container {
+  perspective: 1000px;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.card-3d.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-face-back {
+  transform: rotateY(180deg);
+}
+
+/* Mobile safe area */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
